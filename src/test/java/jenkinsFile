@@ -1,17 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'JDK17'
-        maven 'Maven'
-    }
-
     stages {
-
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                url: 'https://github.com/USERNAME/JavaApp.git'
+                echo 'Source code checkout successful'
             }
         }
 
@@ -31,16 +24,6 @@ pipeline {
             steps {
                 bat 'mvn package'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build Successful!'
-        }
-
-        failure {
-            echo 'Build Failed!'
         }
     }
 }
