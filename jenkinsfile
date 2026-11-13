@@ -4,25 +4,35 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Source code checkout successful'
+                git branch: 'main',
+                    url: 'https://github.com/BPavithra147/javaApp.git'
             }
         }
 
         stage('Compile') {
             steps {
-                bat 'mvn compile'
+                bat '''
+                set "PATH=C:\\Program Files\\Apache\\apache-maven-3.9.16\\bin;%PATH%"
+                mvn compile
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat '''
+                set "PATH=C:\\Program Files\\Apache\\apache-maven-3.9.16\\bin;%PATH%"
+                mvn test
+                '''
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvn package'
+                bat '''
+                set "PATH=C:\\Program Files\\Apache\\apache-maven-3.9.16\\bin;%PATH%"
+                mvn package
+                '''
             }
         }
     }
